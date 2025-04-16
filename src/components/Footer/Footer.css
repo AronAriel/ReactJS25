@@ -1,0 +1,111 @@
+.footer {
+  background-color: #f5fbfc;
+  padding: 60px 20px;
+  font-family: "Inter";
+  color: #3a4660;
+  background-image: url("../../assets/footer-background.svg");
+  background-repeat: no-repeat;
+  background-size: 1040px;
+  background-position: left bottom;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+.footer-left {
+  max-width: 600px;
+  width: 100%;
+}
+
+.footer-left-description {
+  max-width: 250px;
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: 0.36px;
+}
+
+.footer-slogan-title {
+  max-width: 250px;
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: 0.36px;
+}
+
+.footer-slogan-subtitle {
+  max-width: 250px;
+  width: 100%;
+  font-size: 15px;
+  letter-spacing: 0.36px;
+}
+
+.footer-section-wrapper {
+  width: 200px;
+}
+
+.footer-logo {
+  width: 40px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.footer-section h4 {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.footer-section ul {
+  font-size: 15px;
+  letter-spacing: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 30px;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: #3a4660;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+  padding-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin-inline: auto;
+  font-size: 14px;
+}
+
+.footer-bottom a {
+  color: #7cd4db;
+  text-decoration: none;
+}
+
+.footer-icons a {
+  margin-left: 16px;
+}
+
+.footer-icons img {
+  width: 40px;
+  height: 40px;
+}
