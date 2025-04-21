@@ -6,6 +6,8 @@ import items from "../../data/MenuItems";
 import CategoryButtons from "../../components/CategoryButtons/CategoryButtons";
 import "./MenuPage.css";
 
+const categories = [...new Set(items.map((item) => item.category))];
+
 const MenuPage = () => {
   return (
     <div>
@@ -26,7 +28,7 @@ const MenuPage = () => {
           <div className="menu-view">
             <div className="category-buttons">
               <CategoryButtons
-                categories={["Dessert", "Dinner", "Breakfast"]}
+                categories={categories}
                 activeCategory="Dessert"
               />
             </div>

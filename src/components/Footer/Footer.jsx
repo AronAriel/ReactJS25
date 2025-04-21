@@ -5,6 +5,10 @@ import instlogo from "../../assets/icons/inst-logo.png";
 import twitterlogo from "../../assets/icons/twitter-logo.png";
 import youtubelogo from "../../assets/icons/youtube-logo.png";
 
+const COMPANY_LINKS = ["Home", "Order", "FAQ", "Contact"];
+const TEMPLATE_LINKS = ["Style Guide", "Changelog", "Licence", "Webflow University"];
+const FLOWBASE_LINKS = ["More Cloneables"];
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -16,28 +20,17 @@ const Footer = () => {
             for small - medium businesses.
           </p>
         </div>
-
+        
         <div className="footer-section-wrapper">
-          <FooterSection
-            title="Company"
-            items={["Home", "Order", "FAQ", "Contact"]}
-          />
+          <FooterSection title="Company" items={COMPANY_LINKS} />
         </div>
 
         <div className="footer-section-wrapper">
-          <FooterSection
-            title="Template"
-            items={[
-              "Style Guide",
-              "Changelog",
-              "Licence",
-              "Webflow University",
-            ]}
-          />
+          <FooterSection title="Template" items={TEMPLATE_LINKS} />
         </div>
 
         <div className="footer-section-wrapper">
-          <FooterSection title="Flowbase" items={["More Cloneables"]} />
+          <FooterSection title="Flowbase" items={FLOWBASE_LINKS} />
         </div>
       </div>
 

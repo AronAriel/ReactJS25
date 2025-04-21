@@ -11,6 +11,7 @@ const items = [
     name: "Burger Dreams",
     price: 9.2,
     image: burger1,
+    category: "Dinner",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
@@ -19,6 +20,8 @@ const items = [
     name: "Burger Waldo",
     price: 10.0,
     image: burger2,
+    category: "Dinner",
+
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
@@ -27,6 +30,7 @@ const items = [
     name: "Burger Cali",
     price: 8.0,
     image: burger3,
+    category: "Dinner",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
@@ -35,6 +39,7 @@ const items = [
     name: "Burger Bacon Buddy",
     price: 9.99,
     image: burger4,
+    category: "Dessert",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
@@ -43,6 +48,7 @@ const items = [
     name: "Burger Spicy",
     price: 9.2,
     image: burger5,
+    category: "Breakfast",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
@@ -51,6 +57,7 @@ const items = [
     name: "Burger Classic",
     price: 8.0,
     image: burger6,
+    category: "Dinner",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
