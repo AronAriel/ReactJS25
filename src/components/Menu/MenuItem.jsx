@@ -13,15 +13,18 @@ const MenuItem = ({ item }) => (
       <div className="menu-item-description">
         <p>{item.description}</p>
       </div>
-      <div className="menu-item-controls">
+
+      <form className="menu-item-controls">
         <input
           type="number"
           min="1"
           defaultValue="1"
           className="menu-item-quantity"
         />
-        <button className="menu-item-button">Add to cart</button>
-      </div>
+        <button type="submit" className="menu-item-button">
+          Add to cart
+        </button>
+      </form>
     </div>
   </div>
 );
