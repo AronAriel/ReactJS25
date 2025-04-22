@@ -1,16 +1,26 @@
-const FooterSection = ({ title, items }) => {
-  return (
-    <div className="footer-section">
-      <h4>{title}</h4>
-      <ul>
-        {items.map((item) => (
-          <li key={item}>
-            <a href="#">{item}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+import React, { Component } from "react";
+
+class FooterSection extends Component {
+  render() {
+    const { title, items } = this.props;
+
+    return (
+      <div className="footer-section">
+        <h4>{title}</h4>
+        <ul>
+          {items.map((item) => (
+            <li key={item}>
+              {title === "Template" ? (
+                <a href="https://www.google.com/">{item}</a>
+              ) : (
+                <span>{item}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 export default FooterSection;
