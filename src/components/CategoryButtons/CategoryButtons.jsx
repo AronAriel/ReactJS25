@@ -1,24 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import "./CategoryButtons.css";
 
-class CategoryButtons extends Component {
-  render() {
-    const { categories, activeCategory } = this.props;
-    return (
-      <div className="category-buttons">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={`category-button ${
-              cat === activeCategory ? "active" : ""
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-    );
-  }
-}
+const CategoryButtons = ({ categories, activeCategory, onCategorySelect }) => {
+  return (
+    <div className="category-buttons">
+      {categories.map((cat) => (
+        <button
+          key={cat}
+          className={`category-button ${cat === activeCategory ? "active" : ""}`}
+          onClick={() => onCategorySelect(cat)}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  );
+};
 
 export default CategoryButtons;
