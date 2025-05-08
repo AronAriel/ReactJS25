@@ -7,11 +7,11 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (item, quantity) => {
     const newItems = Array.from({ length: quantity }, () => item);
-    console.log("🛒 Добавлено в корзину:", newItems);
+    console.log("Добавлено в корзину:", newItems);
 
     setCartItems((prevItems) => {
       const updated = [...prevItems, ...newItems];
-      console.log("📦 Текущее состояние корзины:", updated);
+      console.log("Текущее состояние корзины:", updated);
       return updated;
     });
   };

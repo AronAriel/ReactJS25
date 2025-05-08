@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MenuList from "./MenuList";
 
-function Menu({ visibleCount, onHasMoreChange }) {
+function Menu({ visibleCount, onHasMoreChange, activeCategory }) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,17 +27,21 @@ function Menu({ visibleCount, onHasMoreChange }) {
     fetchItems();
   }, []);
 
+  const filteredItems = activeCategory
+    ? items.filter((item) => item.category === activeCategory)
+    : items;
+
   useEffect(() => {
     if (onHasMoreChange) {
-      const hasMore = visibleCount < items.length;
+      const hasMore = visibleCount < filteredItems.length;
       onHasMoreChange(hasMore);
     }
-  }, [visibleCount, items, onHasMoreChange]);
+  }, [visibleCount, filteredItems, onHasMoreChange]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  const visibleItems = items.slice(0, visibleCount);
+  const visibleItems = filteredItems.slice(0, visibleCount);
 
   return <MenuList items={visibleItems} />;
 }
