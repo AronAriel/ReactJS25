@@ -61,3 +61,20 @@
   align-items: center;
   justify-content: center;
 }
+
+.cart-count {
+  position: absolute;
+  top: 16px;
+  right: 30px;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  color: #35b8be;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
