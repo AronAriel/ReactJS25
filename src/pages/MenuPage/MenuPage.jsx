@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/Header/header";
+import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import CategoryButtons from "../../components/CategoryButtons/CategoryButtons";
 import Menu from "../../components/Menu/Menu";
 import { CartProvider } from "../../context/CartContext";
 import SeeMoreButton from "../../components/Menu/SeeMoreButton";
-import { fetchMeals } from "../../api/mealsApi";
+import { useMeals } from "../../api/mealsApi"; 
 import "./MenuPage.css";
 
 function MenuPage() {
@@ -14,27 +14,34 @@ function MenuPage() {
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState("");
 
-  const handleSeeMore = () => {
-    setVisibleCount((prev) => prev + 6);
-  };
+  const { data: meals, status, error } = useMeals(); 
 
   useEffect(() => {
-    async function loadData() {
-      try {
-        const meals = await fetchMeals();
-        const categorySet = new Set(meals.map((meal) => meal.category));
-        const categoryList = Array.from(categorySet);
-        setCategories(categoryList);
-        if (categoryList.length > 0) {
-          setActiveCategory(categoryList[0]);
-        }
-      } catch (error) {
-        console.error("Ошибка загрузки данных:", error);
-      }
-    }
+    if (!meals) return;
 
-    loadData();
-  }, []);
+    const categorySet = new Set(meals.map((meal) => meal.category));
+    const categoryList = Array.from(categorySet);
+    setCategories(categoryList);
+    if (categoryList.length > 0) {
+      setActiveCategory(categoryList[0]);
+    }
+  }, [meals]);
+
+  const handleSeeMore = () => {
+    setVisibleCount((prevCount) => prevCount + 6);
+  };
+
+  if (!status || status === null) {
+    return <p>Загрузка...</p>;
+  }
+
+  if (error) {
+    return <p>Ошибка при загрузке данных: {error.message}</p>;
+  }
+
+  if (!meals || meals.length === 0) {
+    return <p>Нет доступных блюд.</p>;
+  }
 
   return (
     <CartProvider>
@@ -60,7 +67,7 @@ function MenuPage() {
                   activeCategory={activeCategory}
                   onCategorySelect={(category) => {
                     setActiveCategory(category);
-                    setVisibleCount(6); 
+                    setVisibleCount(6);
                   }}
                 />
               </div>
