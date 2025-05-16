@@ -1,0 +1,18 @@
+.background {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #f5fbfc;
+    transform: skewY(-3deg);
+    transform-origin: top right;
+    z-index: -1;
+  }
+  
