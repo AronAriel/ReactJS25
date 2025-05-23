@@ -1,36 +1,35 @@
-import React from 'react';
-import styled from 'styled-components';
-import home_page from '../../assets/home-page.svg'
-
+import React from "react";
+import styled from "styled-components";
+import home_page  from '../../assets/home-page.svg';
 
 const OuterContainer = styled.div`
-   position: relative;
+  position: relative;
   background-color: #fff;
   overflow: hidden;
   padding: 80px 0;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #F5FBFC;
+    background-color: #f5fbfc;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 12% 75%);
     z-index: 0;
   }
 `;
 
 const Wrapper = styled.section`
-  position: relative; /* чтобы z-index сработал */
-  z-index: 1;       
+  position: relative;
+  z-index: 1;
   display: flex;
   margin: 0 auto;
   max-width: 1200px;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Inter';
+  font-family: "Inter", sans-serif;
   flex-wrap: wrap;
 `;
 
@@ -46,7 +45,7 @@ const Title = styled.h1`
   letter-spacing: 1.8px;
 
   span {
-    color: #35B8BE;
+    color: #35b8be;
   }
 `;
 
@@ -59,7 +58,7 @@ const Description = styled.p`
 `;
 
 const OrderButton = styled.button`
-  background-color: #35B8BE;
+  background-color: #35b8be;
   max-width: 195px;
   width: 100%;
   height: 60px;
@@ -70,6 +69,9 @@ const OrderButton = styled.button`
   font-size: 16px;
   cursor: pointer;
 
+  &:hover {
+    background-color: #2aa6ad;
+  }
 `;
 
 const TrustSection = styled.div`
@@ -81,7 +83,7 @@ const TrustSection = styled.div`
   }
 
   span {
-    color: #35B8BE;
+    color: #35b8be;
   }
 `;
 
@@ -94,30 +96,33 @@ const ImageSection = styled.div`
   }
 `;
 
-export default function HomeSection() {
+const HomeSection: React.FC = () => {
   return (
     <OuterContainer>
-        <Wrapper>
-      <TextContent>
-        <Title>
-          Beautiful food & takeaway, <span>delivered</span> to your door.
-        </Title>
-        <Description>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
-        </Description>
-        <OrderButton>Place an Order</OrderButton>
-        <TrustSection>
-          <strong>★ Trustpilot</strong>
-          <br />
-          <span>4.8 out of 5</span> based on 2000+ reviews
-        </TrustSection>
-      </TextContent>
+      <Wrapper>
+        <TextContent>
+          <Title>
+            Beautiful food & takeaway, <span>delivered</span> to your door.
+          </Title>
+          <Description>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500.
+          </Description>
+          <OrderButton>Place an Order</OrderButton>
+          <TrustSection>
+            <strong>★ Trustpilot</strong>
+            <br />
+            <span>4.8 out of 5</span> based on 2000+ reviews
+          </TrustSection>
+        </TextContent>
 
-      <ImageSection>
-        <img src={home_page} alt="Delicious food" />
-      </ImageSection>
+        <ImageSection>
+          <img src={home_page} alt="Delicious food" />
+        </ImageSection>
       </Wrapper>
     </OuterContainer>
-    
   );
-}
+};
+
+export default HomeSection;

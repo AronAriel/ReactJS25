@@ -1,6 +1,11 @@
 import React from "react";
 
-function SeeMoreButton({ onClick, visible = true }) {
+interface SeeMoreButtonProps {
+  onClick: () => void;
+  visible?: boolean;
+}
+
+const SeeMoreButton: React.FC<SeeMoreButtonProps> = ({ onClick, visible = true }) => {
   if (!visible) return null;
 
   return (
@@ -10,6 +15,6 @@ function SeeMoreButton({ onClick, visible = true }) {
       </button>
     </div>
   );
-}
+};
 
 export default SeeMoreButton;
