@@ -1,6 +1,11 @@
 import React from "react";
 
-const FooterSection = ({ title, items }) => {
+interface FooterSectionProps {
+  title: string;
+  items: string[];
+}
+
+const FooterSection: React.FC<FooterSectionProps> = ({ title, items }) => {
   return (
     <div className="footer-section">
       <h4>{title}</h4>
