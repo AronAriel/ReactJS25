@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import CategoryButtons from "../../components/CategoryButtons/CategoryButtons";
 import Menu from "../../components/Menu/Menu";
-import { CartProvider } from "../../context/CartContext";
 import SeeMoreButton from "../../components/Menu/SeeMoreButton";
 import { useMeals } from "../../api/mealsApi"; 
+import "../../styles/background.css";
 import "./MenuPage.css";
 
 function MenuPage() {
@@ -44,10 +42,8 @@ function MenuPage() {
   }
 
   return (
-    <CartProvider>
       <div>
-        <Header />
-        <div className="menu">
+        <div className="menu background">
           <div className="menu-page">
             <div className="menu-text">
               <p className="menu-title">Browse our menu</p>
@@ -80,9 +76,7 @@ function MenuPage() {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
-    </CartProvider>
   );
 }
 

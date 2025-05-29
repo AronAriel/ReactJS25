@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
 import "./Header.css";
 import logo from "../../assets/icons/logo.svg";
 import cart from "../../assets/icons/cart2.svg";
@@ -7,29 +9,75 @@ import cart from "../../assets/icons/cart2.svg";
 const Header = () => {
   const { getCartCount } = useContext(CartContext);
   const cartCount = getCartCount();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
 
   return (
     <header className="header">
       <div className="logo">
-        <img src={logo} alt="logo" />
+        <NavLink to="/">
+          <img src={logo} alt="logo" />
+        </NavLink>
       </div>
 
       <div className="header-right">
         <nav>
           <ul className="nav-links">
             <li>
-              <a href="#">Home</a>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <a href="#" className="menu-link">
+              <NavLink
+                to="/menu"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 Menu
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#">Company</a>
+              <NavLink
+                to="/company"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Company
+              </NavLink>
             </li>
             <li>
-              <a href="#">Login</a>
+              {user ? (
+                <NavLink
+                  to="/login"
+                   className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  Logout
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  Login
+                </NavLink>
+              )}
             </li>
           </ul>
         </nav>
