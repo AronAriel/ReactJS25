@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import HomeSection from "../../components/HomeSection/HomeSection";
 
-
 function HomePage() {
-  return (
-    <HomeSection />
-  );
+  return <HomeSection />;
 }
 
 export default HomePage;

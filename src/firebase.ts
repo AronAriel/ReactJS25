@@ -5,8 +5,8 @@ import {
   browserLocalPersistence,
 } from "firebase/auth";
 
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+const firebaseConfig: Record<string, string | undefined> = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "lingangulifood.firebaseapp.com",
   projectId: "lingangulifood",
   storageBucket: "lingangulifood.appspot.com",
@@ -18,7 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-setPersistence(auth, browserLocalPersistence).catch((error) => {
+setPersistence(auth, browserLocalPersistence).catch((error: unknown) => {
   console.error("Ошибка при установке persistence:", error);
 });
 

@@ -4,20 +4,20 @@ import Footer from "./components/Footer/Footer";
 import { Outlet } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 
-function App() {
+function App(){
   return (
-    <AuthProvider>
-      <CartProvider>
-        <Header />
+<>
+<Header />
         <main>
           <Outlet />
           <ToastContainer />
         </main>
         <Footer />
-      </CartProvider>
-    </AuthProvider>
+</>
+        
+
   );
 }
 
