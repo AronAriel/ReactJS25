@@ -8,16 +8,16 @@ import { ToastContainer } from "react-toastify";
 
 function App(){
   return (
-    <AuthProvider>
-      <CartProvider>
-        <Header />
+<>
+<Header />
         <main>
           <Outlet />
           <ToastContainer />
         </main>
         <Footer />
-      </CartProvider>
-    </AuthProvider>
+</>
+        
+
   );
 }
 

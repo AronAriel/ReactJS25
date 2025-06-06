@@ -1,6 +1,7 @@
-import React, { useContext, FormEvent } from "react";
-import { CartContext } from "../../context/CartContext";
-import { CartItem } from "../../context/CartContext";
+import React, { FormEvent } from "react";
+import { useAppDispatch } from "../../store/hooks"; 
+import { addToCart } from "../../store/slices/cartSlice"; 
+import { CartItem } from "../../store/slices/cartSlice"; 
 import "./MenuItem.css";
 import { MenuItemType } from "../../types/MenuItemType";
 
@@ -8,33 +9,24 @@ interface MenuItemProps {
   item: MenuItemType;
 }
 
-interface CartContextType {
-  addToCart: (item: MenuItemType, quantity: number) => void;
-}
-
 const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
-  const context = useContext(CartContext);
+  const dispatch = useAppDispatch();
 
-if (!context) {
-  throw new Error("MenuItem must be used within a CartProvider");
-}
+  const handleAddToCart = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const quantityInput = form.elements.namedItem("quantity") as HTMLInputElement;
+    const quantity = parseInt(quantityInput.value, 10);
 
-const { addToCart } = context;
- const handleAddToCart = (event: FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const quantityInput = form.elements.namedItem("quantity") as HTMLInputElement;
-  const quantity = parseInt(quantityInput.value, 10);
+    const cartItem: CartItem = {
+      id: item.id.toString(),
+      name: item.meal,
+      price: item.price,
+      img: item.img,
+      instructions: item.instructions,
+    };
 
-  const cartItem: CartItem = {
-    id: item.id.toString(),
-    name: item.meal,
-    price: item.price,
-    img: item.img,
-    instructions: item.instructions,
-  };
-
-  addToCart(cartItem, quantity);
+    dispatch(addToCart({ item: cartItem, quantity }));
   };
 
   return (

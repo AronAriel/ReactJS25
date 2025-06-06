@@ -1,4 +1,4 @@
-import { Meal } from "../api/mealsApi";
+import { Meal } from "../store/slices/mealsSlice";
 import { MenuItemType } from "../types/MenuItemType";
 
 export const mapMealToMenuItem = (meal: Meal): MenuItemType => ({
