@@ -1,8 +1,13 @@
 import React from "react";
 import MenuItem from "./MenuItem";
 import "./MenuList.css";
+import { MenuItemType } from "../../types/MenuItemType";
 
-const MenuList = ({ items }) => {
+interface MenuListProps {
+  items: MenuItemType[];
+}
+
+const MenuList: React.FC<MenuListProps> = ({ items }) => {
   return (
     <div className="menu-list">
       {items.map((item) => (

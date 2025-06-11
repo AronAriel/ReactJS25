@@ -1,14 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, FormEvent } from "react";
 import { CartContext } from "../../context/CartContext";
+import { CartItem } from "../../context/CartContext";
 import "./MenuItem.css";
+import { MenuItemType } from "../../types/MenuItemType";
 
-const MenuItem = ({ item }) => {
-  const { addToCart } = useContext(CartContext);
+interface MenuItemProps {
+  item: MenuItemType;
+}
 
-  const handleAddToCart = (event) => {
-    event.preventDefault();
-    const quantity = parseInt(event.target.elements.quantity.value, 10);
-    addToCart(item, quantity);
+interface CartContextType {
+  addToCart: (item: MenuItemType, quantity: number) => void;
+}
+
+const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
+  const context = useContext(CartContext);
+
+if (!context) {
+  throw new Error("MenuItem must be used within a CartProvider");
+}
+
+const { addToCart } = context;
+ const handleAddToCart = (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const quantityInput = form.elements.namedItem("quantity") as HTMLInputElement;
+  const quantity = parseInt(quantityInput.value, 10);
+
+  const cartItem: CartItem = {
+    id: item.id.toString(),
+    name: item.meal,
+    price: item.price,
+    img: item.img,
+    instructions: item.instructions,
+  };
+
+  addToCart(cartItem, quantity);
   };
 
   return (

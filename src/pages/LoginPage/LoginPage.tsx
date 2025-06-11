@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../src/firebase";
-import { useAuth } from "../../context/AuthContext"; 
+import { auth } from "../../firebase";
+import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./LoginPage.css";
@@ -9,25 +9,25 @@ import "../../styles/background.css";
 
 function LoginPage() {
   const { userEmail, logout } = useAuth();
-  const [username, setUserEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     if (userEmail) {
-      setUserEmail(userEmail); 
+      setEmail(userEmail);
     }
   }, [userEmail]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, username, password);
+      await signInWithEmailAndPassword(auth, email, password);
       console.log("Вход выполнен");
       toast.success("Вы успешно вошли в свой аккаунт.");
-    } catch (err) {
+    } catch (err: any) {
       console.error("Ошибка входа:", err.message);
       toast.error("Incorrect login or password");
       setError("Incorrect login or password");
@@ -35,10 +35,10 @@ function LoginPage() {
   };
 
   const handleCancel = async () => {
-    setUserEmail("");
+    setEmail("");
     setPassword("");
     setError("");
-    await logout(); 
+    await logout();
   };
 
   return (
@@ -51,9 +51,9 @@ function LoginPage() {
               <span>User Email</span>
               <input
                 type="email"
-                value={username}
+                value={email}
                 placeholder="example@email.com"
-                onChange={(e) => setUserEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
             <label className="login-space">

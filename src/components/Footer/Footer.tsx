@@ -6,16 +6,16 @@ import instlogo from "../../assets/icons/inst-logo.png";
 import twitterlogo from "../../assets/icons/twitter-logo.png";
 import youtubelogo from "../../assets/icons/youtube-logo.png";
 
-const COMPANY_LINKS = ["Home", "Order", "FAQ", "Contact"];
-const TEMPLATE_LINKS = [
+const COMPANY_LINKS: string[] = ["Home", "Order", "FAQ", "Contact"];
+const TEMPLATE_LINKS: string[] = [
   "Style Guide",
   "Changelog",
   "Licence",
   "Webflow University",
 ];
-const FLOWBASE_LINKS = ["More Cloneables"];
+const FLOWBASE_LINKS: string[] = ["More Cloneables"];
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-top">
