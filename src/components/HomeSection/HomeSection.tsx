@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import home_page  from '../../assets/home-page.svg';
+import { useNavigate } from "react-router-dom";
+import home_page from "../../assets/home-page.svg";
 
 const OuterContainer = styled.div`
   position: relative;
@@ -97,6 +98,12 @@ const ImageSection = styled.div`
 `;
 
 const HomeSection: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleOrderClick = () => {
+    navigate("/menu");
+  };
+
   return (
     <OuterContainer>
       <Wrapper>
@@ -109,7 +116,7 @@ const HomeSection: React.FC = () => {
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500.
           </Description>
-          <OrderButton>Place an Order</OrderButton>
+          <OrderButton onClick={handleOrderClick}>Place an Order</OrderButton>
           <TrustSection>
             <strong>★ Trustpilot</strong>
             <br />

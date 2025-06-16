@@ -85,11 +85,17 @@ const Header: React.FC = () => {
           </ul>
         </nav>
 
-        <div className="cart">
-          <button className="cart-button" type="button" aria-label="Cart">
+      <div className="cart">
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              isActive ? "cart-button active" : "cart-button"
+            }
+            aria-label="Cart"
+          >
             <img src={cart} alt="Cart" className="cart-icon" />
             {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-          </button>
+          </NavLink>
         </div>
       </div>
     </header>
