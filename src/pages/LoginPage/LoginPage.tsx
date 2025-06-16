@@ -1,17 +1,16 @@
 import React, { useState, useEffect, FormEvent } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
-import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./LoginPage.css";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { login, logout, clearError } from "../../store/slices/authSlice";
 import "../../styles/background.css";
+import "./LoginPage.css";
 
 function LoginPage() {
-  const { userEmail, logout } = useAuth();
+  const dispatch = useAppDispatch();
+  const { userEmail, loading, error } = useAppSelector((state) => state.auth);
+
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (userEmail) {
@@ -19,26 +18,28 @@ function LoginPage() {
     }
   }, [userEmail]);
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(clearError());
+    }
+  }, [error, dispatch]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("Вход выполнен");
-      toast.success("Вы успешно вошли в свой аккаунт.");
-    } catch (err: any) {
-      console.error("Ошибка входа:", err.message);
-      toast.error("Incorrect login or password");
-      setError("Incorrect login or password");
-    }
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        toast.success("Вы успешно вошли в свой аккаунт.");
+      })
+      .catch(() => {
+      });
   };
 
   const handleCancel = async () => {
     setEmail("");
     setPassword("");
-    setError("");
-    await logout();
+    dispatch(logout());
   };
 
   return (
@@ -54,6 +55,7 @@ function LoginPage() {
                 value={email}
                 placeholder="example@email.com"
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
               />
             </label>
             <label className="login-space">
@@ -63,6 +65,7 @@ function LoginPage() {
                 value={password}
                 placeholder="********************"
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
               />
             </label>
           </div>
@@ -70,8 +73,15 @@ function LoginPage() {
           {error && <div className="error-msg">{error}</div>}
 
           <div className="login-buttons">
-            <button type="submit" className="submit-btn">Submit</button>
-            <button type="button" className="cancel-btn" onClick={handleCancel}>
+            <button type="submit" className="submit-btn" disabled={loading}>
+              {loading ? "Loading..." : "Submit"}
+            </button>
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={handleCancel}
+              disabled={loading}
+            >
               Cancel
             </button>
           </div>

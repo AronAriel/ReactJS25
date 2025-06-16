@@ -1,22 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { CartContext } from "../../context/CartContext";
-import { useAuth } from "../../context/AuthContext";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { logout } from "../../store/slices/authSlice";
 import "./Header.css";
 import logo from "../../assets/icons/logo.svg";
 import cart from "../../assets/icons/cart2.svg";
 
-
-
 const Header: React.FC = () => {
-  
-  const cartContext = useContext(CartContext);
-  const cartCount = cartContext?.getCartCount ? cartContext.getCartCount() : 0;
-  const { user, logout } = useAuth();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = async (): Promise<void> => {
-    await logout();
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const cartCount = cartItems.length;
+
+  const userEmail = useAppSelector((state) => state.auth.userEmail);
+  const isLoggedIn = userEmail !== "";
+
+  const handleLogout = async () => {
+    await dispatch(logout());
     navigate("/login");
   };
 
@@ -34,7 +35,7 @@ const Header: React.FC = () => {
             <li>
               <NavLink
                 to="/"
-                className={({ isActive }: { isActive: boolean }) =>
+                className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
               >
@@ -44,7 +45,7 @@ const Header: React.FC = () => {
             <li>
               <NavLink
                 to="/menu"
-                className={({ isActive }: { isActive: boolean }) =>
+                className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
               >
@@ -54,7 +55,7 @@ const Header: React.FC = () => {
             <li>
               <NavLink
                 to="/company"
-                className={({ isActive }: { isActive: boolean }) =>
+                className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
               >
@@ -62,23 +63,18 @@ const Header: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              {user ? (
-                <NavLink
-                  to="/login"
-                  className={({ isActive }: { isActive: boolean }) =>
-                    isActive ? "nav-link active" : "nav-link"
-                  }
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLogout();
-                  }}
+              {isLoggedIn ? (
+                <button
+                  className="nav-link logout-button"
+                  onClick={handleLogout}
+                  type="button"
                 >
                   Logout
-                </NavLink>
+                </button>
               ) : (
                 <NavLink
                   to="/login"
-                  className={({ isActive }: { isActive: boolean }) =>
+                  className={({ isActive }) =>
                     isActive ? "nav-link active" : "nav-link"
                   }
                 >
@@ -89,11 +85,17 @@ const Header: React.FC = () => {
           </ul>
         </nav>
 
-        <div className="cart">
-          <button className="cart-button" type="button" aria-label="Cart">
+      <div className="cart">
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              isActive ? "cart-button active" : "cart-button"
+            }
+            aria-label="Cart"
+          >
             <img src={cart} alt="Cart" className="cart-icon" />
             {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-          </button>
+          </NavLink>
         </div>
       </div>
     </header>
