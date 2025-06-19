@@ -20,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background-color: var(--input-color);
   margin: 16px 0px;
   padding: 16px;
   border-radius: 8px;
@@ -54,7 +54,7 @@
 }
 
 .cart-item-price {
-  color: #008080;
+  color: var(--price-cart);
   font-weight: bold;
   margin: 5px 0px;
 }
@@ -105,6 +105,8 @@
   margin: 0px auto;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
 }
 
 .cart-order-btn {

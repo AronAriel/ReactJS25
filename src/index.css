@@ -1,0 +1,23 @@
+:root {
+  --text-color: black;
+}
+
+[data-theme="dark"] {
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-button {
+  margin-left: 1rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  color: var(--text-color);
+}
