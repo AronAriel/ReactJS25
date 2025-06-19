@@ -10,7 +10,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: #f5fbfc;
+    background-color: var(--bg-color-second);
     transform: skewY(-3deg);
     transform-origin: top right;
     z-index: -1;
