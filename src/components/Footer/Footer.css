@@ -1,9 +1,9 @@
 .footer {
-  background-color: #f5fbfc;
+  background-color: var(--footer-color);
   padding: 60px 20px;
   font-family: "Inter";
-  color: #3a4660;
-  background-image: url("../../assets/footer-background.svg");
+  color: var(--text-color);
+  background-image: var(--footer-background);
   background-repeat: no-repeat;
   background-size: 1040px;
   background-position: left bottom;
@@ -28,6 +28,7 @@
   width: 100%;
   font-size: 16px;
   letter-spacing: 0.36px;
+  color: var(--text-color);
 }
 
 .footer-slogan-title {
@@ -35,6 +36,7 @@
   width: 100%;
   font-size: 16px;
   letter-spacing: 0.36px;
+  color: var(--text-color);
 }
 
 .footer-slogan-subtitle {
@@ -42,6 +44,7 @@
   width: 100%;
   font-size: 15px;
   letter-spacing: 0.36px;
+  color: var(--text-color);
 }
 
 .footer-section-wrapper {
@@ -60,6 +63,7 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 30px;
+  color: var(--text-color);
 }
 
 .footer-section ul {
@@ -76,7 +80,7 @@
 
 .footer-section a {
   text-decoration: none;
-  color: #3a4660;
+  color: var(--text-color);
 }
 
 .footer-section a:hover {
@@ -84,7 +88,7 @@
 }
 
 .footer-bottom {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--border-color);
   margin-top: 40px;
   padding-top: 50px;
   display: flex;
@@ -94,10 +98,11 @@
   max-width: 1200px;
   margin-inline: auto;
   font-size: 14px;
+  color: var(--text-color);
 }
 
 .footer-bottom a {
-  color: #7cd4db;
+  color: var(--accent-color);
   text-decoration: none;
 }
 

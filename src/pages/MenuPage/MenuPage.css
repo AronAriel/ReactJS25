@@ -12,6 +12,7 @@
   margin: 0 auto;
   padding: 100px 0;
   margin-bottom: 100px;
+  background-color: var();
 }
 
 .menu-text {
@@ -76,6 +77,7 @@
 
 .category-buttons {
   margin: 0 auto;
+  background-color: var(--bg-color-second);
 }
 
 .menu-footer {
