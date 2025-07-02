@@ -6,6 +6,8 @@ import "./Header.css";
 import logo from "../../assets/icons/logo.svg";
 import cart from "../../assets/icons/cart2.svg";
 import { useTheme } from "../../context/ThemeContext";
+import darkIcon from "../../assets/icons/dark-mode.png";
+import lightIcon from "../../assets/icons/light-mode.png";
 
 const Header: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -66,13 +68,14 @@ const Header: React.FC = () => {
             </li>
             <li>
               {isLoggedIn ? (
-                <button
-                  className="nav-link logout-button"
-                  onClick={handleLogout}
-                  type="button"
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
                 >
                   Logout
-                </button>
+                </NavLink>
               ) : (
                 <NavLink
                   to="/login"
@@ -90,7 +93,11 @@ const Header: React.FC = () => {
         <div className="theme-cart">
           <div>
             <button className="theme-switcher" onClick={toggleTheme}>
-              {theme === "dark" ? " Dark" : "Light"}
+              <img
+                src={theme === "dark" ? darkIcon : lightIcon}
+                alt={theme === "dark" ? "Dark mode" : "Light mode"}
+                style={{ width: 24, height: 24 }}
+              />
             </button>
           </div>
           <div className="cart">

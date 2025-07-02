@@ -101,13 +101,6 @@
 }
 
 .theme-switcher {
-  margin-left: 1rem;
-  padding: 18px 10px;
-  margin-top: 2px;
-  cursor: pointer;
+  border: none;
   background: none;
-  border-radius: 5px;
-  border: var(--accent-color);
-  color: black;
-  background-color: var(--accent-color);
 }
