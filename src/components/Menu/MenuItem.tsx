@@ -9,6 +9,8 @@ interface MenuItemProps {
   item: MenuItemType;
 }
 
+const PRICE_DECIMALS = 2;
+
 const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
   const dispatch = useAppDispatch();
 
@@ -37,7 +39,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
       <div className="menu-items-right">
         <div className="menu-item-header">
           <h3 className="menu-item-title">{item.meal}</h3>
-          <p className="menu-item-price">${item.price.toFixed(2)} USD</p>
+          <p className="menu-item-price">${item.price.toFixed(PRICE_DECIMALS)} USD</p>
         </div>
         <div className="menu-item-description">
           <p>{item.instructions}</p>

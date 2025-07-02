@@ -121,3 +121,25 @@
   width: 100%;
   margin: 0px auto;
 }
+
+.cart-empty {
+  text-align: center;
+  font-size: 24px;
+  color: var(--text-color);
+}
+.cart-order-btn {
+  background-color: #35b8be;
+  max-width: 195px;
+  width: 100%;
+  height: 60px;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cart-order-btn:hover {
+  background-color: #2aa6ad;
+}

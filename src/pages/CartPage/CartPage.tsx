@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { clearCart } from "../../store/slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 import "./CartPage.css";
 import "../../styles/background.css";
+
+const PRICE_DECIMALS = 2;
 
 const CartPage: React.FC = () => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [street, setStreet] = useState("");
   const [house, setHouse] = useState("");
@@ -41,12 +45,22 @@ const CartPage: React.FC = () => {
     setHouse("");
   };
 
+  const handleGoToMenu = () => {
+    navigate("/menu");
+  };
+
   return (
     <div className="background">
       <div className="cart-container">
         <p className="cart-title">Finish your order</p>
+
         {items.length === 0 ? (
-          <p className="cart-empty">Your cart is empty.</p>
+          <>
+            <p className="cart-empty">Your cart is empty.</p>
+            <button className="cart-order-btn" onClick={handleGoToMenu}>
+              Go to Menu
+            </button>
+          </>
         ) : (
           <>
             {items.map((item) => (
@@ -61,7 +75,7 @@ const CartPage: React.FC = () => {
                 </div>
                 <div className="cart-item-right">
                   <span className="cart-item-price">
-                    ${item.price.toFixed(2)} USD
+                    ${item.price.toFixed(PRICE_DECIMALS)} USD
                   </span>
                   <input
                     type="number"
