@@ -5,7 +5,7 @@ import home_page from "../../assets/home-page.svg";
 
 const OuterContainer = styled.div`
   position: relative;
-  background-color: #fff;
+  background-color: var(--card-bg);
   overflow: hidden;
   padding: 80px 0;
 
@@ -16,7 +16,7 @@ const OuterContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #f5fbfc;
+    background-color: var(--bg-color-second);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 12% 75%);
     z-index: 0;
   }

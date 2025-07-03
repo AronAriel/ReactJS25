@@ -7,13 +7,16 @@ import SeeMoreButton from "../../components/Menu/SeeMoreButton";
 import "../../styles/background.css";
 import "./MenuPage.css";
 
+const INITIAL_VISIBLE_COUNT = 6;
+const SEE_MORE_INCREMENT = 6;
+
 function MenuPage() {
   const dispatch = useAppDispatch();
   const meals = useAppSelector((state) => state.meals.meals);
   const status = useAppSelector((state) => state.meals.status);
   const error = useAppSelector((state) => state.meals.error);
 
-  const [visibleCount, setVisibleCount] = useState<number>(6);
+  const [visibleCount, setVisibleCount] = useState<number>(INITIAL_VISIBLE_COUNT);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("");
@@ -37,7 +40,7 @@ function MenuPage() {
   }, [meals, activeCategory]);
 
   const handleSeeMore = () => {
-    setVisibleCount((prevCount) => prevCount + 6);
+    setVisibleCount((prevCount) => prevCount + SEE_MORE_INCREMENT);
   };
 
   if (status === "loading") return <p>Загрузка...</p>;
@@ -66,7 +69,7 @@ function MenuPage() {
                 activeCategory={activeCategory}
                 onCategorySelect={(category: string) => {
                   setActiveCategory(category);
-                  setVisibleCount(6);
+                  setVisibleCount(INITIAL_VISIBLE_COUNT);
                 }}
               />
             </div>
